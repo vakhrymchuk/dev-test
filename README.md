@@ -76,7 +76,7 @@ longitude
 Your solution
 =============
 
-Please implement your solution as a stand alone application which can be started from the command line, i.e. send us a fat jar file with all dependencies. You can use Java 7 and open source libraries that you think help you to fulfill this task.
+Please implement your solution as a stand alone application which can be started from the command line, i.e. send us a fat jar file with all dependencies. You can use Java 8 and open source libraries that you think help you to fulfill this task.
 Also send us the source code to your solution. We use GitHub, so if you put your source code into a GitHub repository, it will make our life easier.
 We will evaluate your source code as well as the functionality of the program: Does it run, how does it handle errors, how well-engineered is the architecture etc.
 Thank you!
