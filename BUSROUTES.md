@@ -13,10 +13,10 @@ by a bus route.
 ### Task
 
 Given the REST end-point
-`http://dev-test.goeuro.com/API/providers/bus/XXX/routes` you can obtain data
-describing bus routes. Bus routes consist of an unique identifier and a list of
-stations (also just unique identifiers). A bus route **connects** its list of
-stations.
+`http://88.198.124.43:1337/API/providers/bus/goeurobus/routes/:key` you can
+obtain data describing bus routes with a provided authentication key `:key`. Bus
+routes consist of an unique identifier and a list of stations (also just unique
+identifiers). A bus route **connects** its list of stations.
 
 To simulate real white list queries you will be given a query file that contains
 queries. Each query consists of two station identifiers and asks if these two
