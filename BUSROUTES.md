@@ -72,9 +72,9 @@ in the input data that connects the stations represented by `dep_sid` and
 
 
 
-### Example
+### Example Data
 
-Input Data:
+Bus Routes Data File:
 ```
 3
 0 0 1 2 3 4
@@ -95,3 +95,31 @@ Response:
     "direct_bus_route": true
 }
 ```
+
+
+### Packaging
+
+Your micro service must contain two simple bash scripts in the top level
+repository directory.
+
+- `build.sh`: builds your project. This could be as simple as:
+  ```
+  #!/bin/bash
+  mvn clean package
+  ```
+
+  We will execute this on an **Ubuntu 16.04** docker container with installed:
+
+  ```
+  openjdk-8-jdk
+  maven
+  gradle
+  ```
+
+- `run.sh`: runs your micro service. Accepts the path to a **bus routes data
+  file** as argument (`bash run.sh FILE`). After `run.sh` got started your micro
+  service shall answer queries until its terminated. This could look like:
+  ```
+  #!/bin/bash
+  java -jar target/my-fancy-service-fat-jar.jar $1
+  ```
