@@ -5,23 +5,20 @@
 We are adding a new bus provider to our system. In order to implement a very
 specific requirement of this bus provider our system needs to be able to white
 list direct connections. We have access to a weekly updated list of bus routes
-via a REST-API. As this provider has a lot of long bus routes, we need to come
-up with a proper service to quickly answer if two given stations are connected
-by a bus route.
+in form of a **bus route data file**. As this provider has a lot of long bus
+routes, we need to come up with a proper service to quickly answer if two given
+stations are connected by a bus route.
 
 
 ### Task
 
-Given the REST end-point
-`http://88.198.124.43:1337/API/providers/bus/goeurobus/routes/:key` you can
-obtain data describing bus routes with a provided authentication key `:key`. Bus
-routes consist of an unique identifier and a list of stations (also just unique
-identifiers). A bus route **connects** its list of stations.
+The bus route data file provided by the bus provider contains a list of bus
+routes. These routes consist of an unique identifier and a list of stations
+(also just unique identifiers). A bus route **connects** its list of stations.
 
-To simulate real white list queries you will be given a query file that contains
-queries. Each query consists of two station identifiers and asks if these two
-stations are connected by a bus route. *Note: the station identifiers given in a
-query may not be part of any bus route!*
+Your task is to implement a micro service which is able to answer whether there
+is a bus route providing a direct connection between two given stations. *Note:
+the station identifiers given in a query may not be part of any bus route!*
 
 
 ### Bus Route Data
@@ -35,20 +32,44 @@ represent a list of **station ids**. Station ids may occur in multiple bus
 routes, but never occur twice within the same bus route.
 
 
-### Query File
+### REST API
 
-The first line of input gives you the number of queries **M**. **M** queries
-follow. For each query there will be **one** line containing **two** integers
-**a** and **b**. Both, **a** and **b**, match a **station id** in the
-corresponding input file.
+Your micro service has to implement a REST-API supporting a single URL and only
+GET requests. It has to serve
+`http://localhost:8088/rest/provider/goeurobus/direct/:dep_sid/:arr_sid`. The
+parameters `dep_sid` (departure) and `arr_sid` (arrival) are two station ids
+(sid) represented by 32 bit integers.
+
+The response has to be a single JSON Object:
+
+```
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "dep_sid": {
+      "type": "integer"
+    },
+    "arr_sid": {
+      "type": "integer"
+    },
+    "direct_bus_route": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "dep_sid",
+    "arr_sid",
+    "direct_bus_route"
+  ]
+}
+```
+
+The `direct_bus_route` field has to be set to `true` if there exists a bus route
+in the input data that connects the stations represented by `dep_sid` and
+`arr_sid`. Otherwise `direct_bus_route` must be set to `false`.
 
 
-### Output
-
-Output the line: `OUTPUT BEGIN` For each query output **one** line containing
-`true` or `false`. Output `true` if there exists a bus route in the input data 
-that connects the stations represented by **a** and **b** of this query.
-Otherwise output `false`. Output the line: `OUTPUT END`
 
 
 ### Example
@@ -61,17 +82,16 @@ Input Data:
 2 0 6 4
 ```
 
-Query File:
-```
-2
-0 6
-2 5
+Query:
+````
+http://localhost:8088/rest/provider/goeurobus/direct/0/6
 ```
 
-Output:
+Response:
 ```
-OUTPUT BEGIN
-true
-false
-OUTPUT END
+{
+    "dep_sid": 0,
+    "arr_sid": 6,
+    "direct_bus_route": true
+}
 ```
