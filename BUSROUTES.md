@@ -123,3 +123,29 @@ repository directory.
   #!/bin/bash
   java -jar target/my-fancy-service-fat-jar.jar $1
   ```
+
+
+### Quick Smoketest
+
+We will run some tests on your implementation. To gain some insight we opened up
+a simplified version of what we run. There are two bash scripts located in the
+`tests/` directory:
+```
+build_docker_image.sh
+run_simple_test.sh
+```
+
+Given a running `docker` installation and a UNIX-like environment you can run:
+```
+cd tests/
+bash build_docker_image.sh YOUR_GIT_REPO_URL
+bash run_simple_test.sh
+```
+This should output:
+```
+TEST PASSED!
+```
+
+*Note: The simple test assumes your running native docker. If not (e.g. your on
+OSX) please adopt the `run_simple_test.sh` file and replace `localhost` with the
+IP of your docker VM*
