@@ -28,8 +28,8 @@ routes follow. For each bus route there will be **one** line containing a space
 separated list of integers. This list contains at least two integers. The
 **first** integer represents the bus **route id**. The bus route id is unique
 among all other bus route ids in the input. The remaining integers in the list
-represent a list of **station ids**. Station ids may occur in multiple bus
-routes, but never occur twice within the same bus route.
+represent a list of **station ids**. A station id may occur in multiple bus
+routes, but can never occur twice within the same bus route.
 
 
 ### REST API
@@ -97,6 +97,14 @@ Response:
 ```
 
 
+### Implementation
+
+Please implement your solution in Java, preferably Java 8. We expect you to
+demonstrate best practices for general software development. Feel free to use
+helpful open source libraries if applicable. We will evaluate your source code
+as well as the functionality and compliance of the application.
+
+
 ### Packaging
 
 Your micro service must contain two simple bash scripts in the top level
@@ -134,6 +142,22 @@ repository directory.
   
   *Note: as stated above `service.sh` must be located in the top level directory
   of your repository.
+
+
+### Shipping
+
+The preferred option is a link to a **git** repository. GitHub, GitLab, Bitbucket or
+your self hosted git. As long as `git clone LINK` works we're happy. If you are
+not able to share a git repository, e.g. for privacy reasons, please share a download link
+for a **zip** file. This zip file should contain a single folder that contains your project.
+The content of the zip file should look like this:
+```
+project_folder
+├── src
+├── build.gradle/pom.xml
+├── build.sh
+└── service.sh
+```
 
 
 ### Quick Smoke Test
