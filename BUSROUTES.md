@@ -18,14 +18,14 @@ routes. These routes consist of an unique identifier and a list of stations
 
 Your task is to implement a micro service which is able to answer whether there
 is a bus route providing a direct connection between two given stations. *Note:
-the station identifiers given in a query may not be part of any bus route!*
+The station identifiers given in a query may not be part of any bus route!*
 
 
 ### Bus Route Data
 
 The first line of the data gives you the number of bus routes **N**. **N** bus
 routes follow. For each bus route there will be **one** line containing a space
-separated list of at integers. This list contains at least one integer. The
+separated list of integers. This list contains at least two integers. The
 **first** integer represents the bus **route id**. The bus route id is unique
 among all other bus route ids in the input. The remaining integers in the list
 represent a list of **station ids**. Station ids may occur in multiple bus
@@ -90,7 +90,7 @@ http://localhost:8088/rest/provider/goeurobus/direct/0/6
 Response:
 ```
 {
-    "dep_sid": 0,
+    "dep_sid": 3,
     "arr_sid": 6,
     "direct_bus_route": true
 }
@@ -116,36 +116,65 @@ repository directory.
   gradle
   ```
 
-- `run.sh`: runs your micro service. Accepts the path to a **bus routes data
-  file** as argument (`bash run.sh FILE`). After `run.sh` got started your micro
-  service shall answer queries until its terminated. This could look like:
+- `service.sh`: starts / stops your micro service. Accepts `start|stop|block`
+  and the path to a **bus routes data file** as arguments (`bash service.sh
+  start FILE`). After your micro service got started it shall answer queries
+  until its terminated. Please use the template provided in the `template`
+  sub-directory. Usually you only have to specify `RUN` and `NAME`. Something
+  like this:
+
   ```
-  #!/bin/bash
-  java -jar target/my-fancy-service-fat-jar.jar $1
+  …
+
+  RUN="java -jar my-fancy-fat-jar.jar"
+  NAME=my-awesome-bus-route-service
+  
+  …
   ```
+  
+  *Note: as stated above `service.sh` must be located in the top level directory
+  of your repository.
 
 
-### Quick Smoketest
+### Quick Smoke Test
+
+*Note: This smoke test only checks for compliance, not for correctness!*
 
 We will run some tests on your implementation. To gain some insight we opened up
-a simplified version of what we run. There are two bash scripts located in the
+a simplified version of what we run. There are some bash scripts located in the
 `tests/` directory:
 ```
 build_docker_image.sh
-run_simple_test.sh
+run_test_docker.sh
+run_test_local.sh
+simple_test.sh
 ```
 
 Given a running `docker` installation and a UNIX-like environment you can run:
 ```
 cd tests/
 bash build_docker_image.sh YOUR_GIT_REPO_URL
-bash run_simple_test.sh
+bash run_test_docker.sh
 ```
 This should output:
 ```
 TEST PASSED!
 ```
 
+If you don't want to install docker you can do a quick local test:
+```
+bash build.sh
+cd tests/
+bash build_docker_image.sh YOUR_GIT_REPO_URL
+bash run_test_local.sh ../service.sh
+```
+This should output:
+```
+TEST PASSED!
+```
+
+
+
 *Note: The simple test assumes your running native docker. If not (e.g. your on
-OSX) please adopt the `run_simple_test.sh` file and replace `localhost` with the
+OSX) please adopt the `run_test_docker.sh` file and replace `localhost` with the
 IP of your docker VM*
