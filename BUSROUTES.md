@@ -3,8 +3,8 @@
 ### Problem
 
 We are adding a new bus provider to our system. In order to implement a very
-specific requirement of this bus provider our system needs to be able to white
-list direct connections. We have access to a weekly updated list of bus routes
+specific requirement of this bus provider our system needs to be able to filter
+direct connections. We have access to a weekly updated list of bus routes
 in form of a **bus route data file**. As this provider has a lot of long bus
 routes, we need to come up with a proper service to quickly answer if two given
 stations are connected by a bus route.
@@ -23,9 +23,9 @@ The station identifiers given in a query may not be part of any bus route!*
 
 ### Bus Route Data
 
-The first line of the data gives you the number of bus routes **N**. **N** bus
-routes follow. For each bus route there will be **one** line containing a space
-separated list of integers. This list contains at least two integers. The
+The first line of the data gives you the number **N** of bus routes, followed by
+**N** bus routes . For each bus route there will be **one** line containing a
+space separated list of integers. This list contains at least two integers. The
 **first** integer represents the bus **route id**. The bus route id is unique
 among all other bus route ids in the input. The remaining integers in the list
 represent a list of **station ids**. A station id may occur in multiple bus
@@ -84,7 +84,7 @@ Bus Routes Data File:
 
 Query:
 ````
-http://localhost:8088/rest/provider/goeurobus/direct/0/6
+http://localhost:8088/rest/provider/goeurobus/direct/3/6
 ```
 
 Response:
@@ -146,11 +146,12 @@ repository directory.
 
 ### Shipping
 
-The preferred option is a link to a **git** repository. GitHub, GitLab, Bitbucket or
-your self hosted git. As long as `git clone LINK` works we're happy. If you are
-not able to share a git repository, e.g. for privacy reasons, please share a download link
-for a **zip** file. This zip file should contain a single folder that contains your project.
-The content of the zip file should look like this:
+The preferred option is a link to a **git** repository. GitHub, GitLab,
+Bitbucket or your self hosted git. As long as `git clone LINK` works we're
+happy. If you are not able to share a git repository, e.g. for privacy reasons,
+please share a download link for a **zip** file. This zip file should contain a
+single folder that contains your project. The content of the zip file should
+look like this:
 ```
 project_folder
 ├── src
@@ -199,6 +200,6 @@ TEST PASSED!
 
 
 
-*Note: The simple test assumes your running native docker. If not (e.g. your on
-OSX) please adopt the `run_test_docker.sh` file and replace `localhost` with the
-IP of your docker VM*
+*Note: The docker based test assumes your running native docker. If not (e.g.
+your on OSX) please adopt the `run_test_docker.sh` file and replace `localhost`
+with the IP of your docker VM*
