@@ -24,7 +24,7 @@ The station identifiers given in a query may not be part of any bus route!*
 ### Bus Route Data
 
 The first line of the data gives you the number **N** of bus routes, followed by
-**N** bus routes . For each bus route there will be **one** line containing a
+**N** bus routes. For each bus route there will be **one** line containing a
 space separated list of integers. This list contains at least two integers. The
 **first** integer represents the bus **route id**. The bus route id is unique
 among all other bus route ids in the input. The remaining integers in the list
@@ -107,6 +107,10 @@ as well as the functionality and compliance of the application.
 
 ### Packaging
 
+Done with the fun part, the implementation? We have a few more requirements
+for you that might sound boring but help us a lot in testing your code. Before you
+send us your solution, package it.
+
 Your micro service must contain two simple bash scripts in the top level
 repository directory.
 
@@ -127,7 +131,7 @@ repository directory.
 - `service.sh`: starts / stops your micro service. Accepts `start|stop|block`
   and the path to a **bus routes data file** as arguments (`bash service.sh
   start FILE`). After your micro service got started it shall answer queries
-  until its terminated. Please use the template provided in the `template`
+  until it is terminated. Please use the template provided in the `template`
   sub-directory. Usually you only have to specify `RUN` and `NAME`. Something
   like this:
 
@@ -165,9 +169,9 @@ project_folder
 
 *Note: This smoke test only checks for compliance, not for correctness!*
 
-We will run some tests on your implementation. To gain some insight we opened up
-a simplified version of what we run. There are some bash scripts located in the
-`tests/` directory:
+We will run some tests on your implementation, and because we are a friendly
+bunch of developers, we share a (simplified) version of what we run. There 
+are some bash scripts located in the `tests/` directory:
 ```
 build_docker_image.sh
 run_test_docker.sh
