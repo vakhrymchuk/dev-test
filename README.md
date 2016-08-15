@@ -25,7 +25,7 @@ The station identifiers given in a query may not be part of any bus route!*
 
 The first line of the data gives you the number **N** of bus routes, followed by
 **N** bus routes. For each bus route there will be **one** line containing a
-space separated list of integers. This list contains at least two integers. The
+space separated list of integers. This list contains at least three integers. The
 **first** integer represents the bus **route id**. The bus route id is unique
 among all other bus route ids in the input. The remaining integers in the list
 represent a list of **station ids**. A station id may occur in multiple bus
