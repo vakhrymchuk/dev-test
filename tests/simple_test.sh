@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 sleep 5
 {
     curl -s localhost:8088/rest/provider/goeurobus/direct/3/4 | grep -E 'true|false' > /dev/null &&
