@@ -194,7 +194,6 @@ If you don't want to install docker you can do a quick local test:
 ```
 bash build.sh
 cd tests/
-bash build_docker_image.sh YOUR_GIT_REPO_URL
 bash run_test_local.sh ../service.sh
 ```
 This should output:
