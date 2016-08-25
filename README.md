@@ -31,6 +31,14 @@ among all other bus route ids in the input. The remaining integers in the list
 represent a list of **station ids**. A station id may occur in multiple bus
 routes, but can never occur twice within the same bus route.
 
+You may assume 100,000 as upper limit for the number of bus routes. And
+1,000,000 as upper limit for the number of stations. Therefore, your internal
+data structure should still fit into memory on a suitable machine.
+
+*Note: The bus route data file will be a local file and your service will get
+the path to file as the first command line argument. Your service will get
+restarted if the file or its location changes.*
+
 
 ### REST API
 
