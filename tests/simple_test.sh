@@ -1,9 +1,8 @@
 #!/bin/bash
-set -x
 sleep 5
 {
-    curl -s localhost:8088/rest/provider/goeurobus/direct/3/4 | grep -E 'true|false' > /dev/null &&
-    curl -s localhost:8088/rest/provider/goeurobus/direct/0/1 | grep -E 'true|false' > /dev/null &&
+    curl -s "localhost:8088/api/direct?dep_sid=3&arr_sid=4" | grep -E 'true|false' > /dev/null &&
+    curl -s "localhost:8088/api/direct?dep_sid=0&arr_sid=1" | grep -E 'true|false' > /dev/null &&
     echo TEST PASSED!
 } || {
     echo TEST FAILED!
