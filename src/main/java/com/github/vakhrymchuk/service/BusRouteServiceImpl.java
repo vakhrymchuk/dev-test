@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 @Service
 public class BusRouteServiceImpl implements BusRouteService, CommandLineRunner {
@@ -29,12 +28,19 @@ public class BusRouteServiceImpl implements BusRouteService, CommandLineRunner {
     @Override
     public boolean direct(final Integer depSid, final Integer arrSid) {
         LOG.debug("direct depSid: [{}], arrSid: [{}]", depSid, arrSid);
+        final String dep = " " + depSid + " ";
+        final String arr = " " + arrSid + " ";
         try {
-            final Stream<String> stream = Files.lines(Paths.get(filename));
-            return true;
+            return Files.lines(Paths.get(filename))
+                    .skip(1)
+                    .anyMatch(line -> checkLine(line, dep, arr));
         } catch (IOException e) {
             LOG.error("Failed to open file", e);
             throw new RuntimeException("Failed to open file", e);
         }
+    }
+
+    private boolean checkLine(final String line, final String dep, final String arr) {
+        return line.contains(dep) && line.contains(arr);
     }
 }
