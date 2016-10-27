@@ -1,13 +1,18 @@
 package com.github.vakhrymchuk.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class BusRouteServiceImplTest {
+@SpringBootTest
+public class BusRouteServiceImplTest extends AbstractTestNGSpringContextTests {
 
-    private BusRouteService busRouteService = new BusRouteServiceImpl();
+    @Autowired
+    private BusRouteService busRouteService;
 
     @DataProvider
     public static Object[][] data() {
