@@ -18,6 +18,6 @@ RUN curl -O https://static.rust-lang.org/rustup.sh \
 COPY example /data/example
 ARG repo
 WORKDIR /data
-RUN git clone $repo dev-test
+RUN git clone $repo dev-test -b solution
 WORKDIR dev-test
 RUN bash build.sh
