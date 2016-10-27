@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class BusRouteServiceImpl implements BusRouteService {
     @Override
     public boolean direct(final Integer depSid, final Integer arrSid) {
-        return false;
+        return true;
     }
 }
