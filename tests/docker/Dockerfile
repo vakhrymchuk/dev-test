@@ -1,4 +1,4 @@
-from ubuntu:16.04
+FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y \
     openjdk-8-jdk \
@@ -17,7 +17,8 @@ RUN curl -O https://static.rust-lang.org/rustup.sh \
 
 COPY example /data/example
 ARG repo
+ARG branch
 WORKDIR /data
-RUN git clone $repo dev-test -b solution
+RUN git clone $repo dev-test -b $branch
 WORKDIR dev-test
 RUN bash build.sh
