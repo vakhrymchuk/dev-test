@@ -38,7 +38,7 @@ case "$1" in
     ;;
   block)
     start
-    sleep infinity
+    tail -f ${LOGFILE}
     ;;
   *)
     echo "Usage: $0 {start|stop|block} DATA_FILE"
