@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @Service
 public class BusRouteServiceImpl implements BusRouteService, CommandLineRunner {
@@ -30,10 +31,13 @@ public class BusRouteServiceImpl implements BusRouteService, CommandLineRunner {
         LOG.debug("direct depSid: [{}], arrSid: [{}]", depSid, arrSid);
         final String dep = " " + depSid + " ";
         final String arr = " " + arrSid + " ";
+
+        return readStream().skip(1).anyMatch(line -> checkLine(line, dep, arr));
+    }
+
+    private Stream<String> readStream() {
         try {
-            return Files.lines(Paths.get(filename))
-                    .skip(1)
-                    .anyMatch(line -> checkLine(line, dep, arr));
+            return Files.lines(Paths.get(filename));
         } catch (IOException e) {
             LOG.error("Failed to open file", e);
             throw new RuntimeException("Failed to open file", e);
