@@ -19,6 +19,9 @@ public class BusRouteServiceImplTest extends AbstractTestNGSpringContextTests {
         return new Object[][]{
                 {153, 150, true},
                 {1, 99, false},
+                {1, 153, false},
+                {17, 169, false},
+                {5, 11, true},
         };
     }
 

@@ -41,6 +41,7 @@ public class BusRouteServiceImpl implements BusRouteService, CommandLineRunner {
     }
 
     private boolean checkLine(final String line, final String dep, final String arr) {
-        return line.contains(dep) && line.contains(arr);
+        final String s = line + ' ';
+        return s.contains(dep) && s.contains(arr);
     }
 }
