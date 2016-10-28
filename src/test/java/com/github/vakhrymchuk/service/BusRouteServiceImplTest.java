@@ -22,6 +22,7 @@ public class BusRouteServiceImplTest extends AbstractTestNGSpringContextTests {
                 {1, 153, false},
                 {17, 169, false},
                 {5, 11, true},
+                {150, 153, false},
         };
     }
 
