@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 @Service
+@Profile("java")
 public class BusRouteServiceImpl implements BusRouteService, CommandLineRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(BusRouteServiceImpl.class);
